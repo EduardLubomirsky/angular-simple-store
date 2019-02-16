@@ -1,0 +1,8 @@
+<nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="currentUser">
+    <div class="navbar-nav">
+        <a class="nav-item nav-link" [routerLink]="['../products/all']">Home</a>
+        <a class="nav-item nav-link" [routerLink]="['../user/add']">Add</a>
+        <a class="nav-item nav-link" [routerLink]="['../products/chart']">Chart</a>
+        <a class="nav-item nav-link" (click)="logout()">Logout</a>
+    </div>
+  </nav>

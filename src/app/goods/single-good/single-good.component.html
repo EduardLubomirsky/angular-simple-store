@@ -1,0 +1,16 @@
+<div class="item">
+  <img class="item-image" [hidden]="!good.img" [src]="good.img" alt="">
+  <img class="item-image" [hidden]="good.img" src="../../../assets/img/preview.png" alt="">
+  <div class="item-info">
+    <div class="">
+      <span class="name">{{good.name}}</span>
+      <span class="price">{{good.price}}</span>
+    </div>
+    <div class="category">{{good.category}}</div>
+    <div class="inStock">{{good.inStock}}</div>
+  </div>
+  <div class="button-block mt-auto">
+    <button class="btn mr-10">Add to chart</button>
+    <button class="btn btn-red" (click)="deleteGood(good)">Delete</button>
+  </div>
+</div>

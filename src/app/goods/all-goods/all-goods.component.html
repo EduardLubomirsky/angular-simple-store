@@ -1,0 +1,29 @@
+<div class="active-filter-panel">
+
+</div>
+<div class="filter-panel">
+  <div class="input-box">
+    <div class="search-bar">
+      <input type="text" placeholder="Search">
+    </div>
+    <div class="category">
+      <select name="" id="">
+        <option value="1">all</option>
+        <option value="2">category 1</option>
+        <option value="3">category 1</option>
+        <option value="4">category 1</option>
+      </select>
+    </div>
+    <button class="btn">Search</button>
+  </div>
+  <div class="input-box">
+    <input type="text" placeholder="From">
+    <input type="text" placeholder="To">
+  </div>
+</div>
+<div class="item-counter">
+  Result {{allGoods.length}}
+</div>
+<div class="item-wrapper">
+  <app-single-good *ngFor="let good of allGoods" [good]="good" (deleteAction)="refreshView($event);"></app-single-good>
+</div>

@@ -1,1 +1,65 @@
 /* You can add global styles to this file, and also import other style files */
+
+body, html {
+    margin: 0;
+    padding: 0;
+}
+.container{
+    width: 1200px;
+    margin: 0 auto;
+    padding: 0 10px;
+}
+.item-wrapper {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.btn {
+    border: none;
+    background: #28a745;
+    color: white;
+    display: flex;
+}
+
+input[type="text"], select {
+
+    &.ng-touched.ng-invalid {
+        border-color: #ed655f;
+    }
+
+    box-sizing: border-box;
+    width: 100%; 
+    margin: 10px 0;
+    border-radius: 5px;
+    padding: 10px;
+    border: 1px solid #28a745;
+}
+input[type="file"] {
+    display: none;
+}
+select{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    padding-right: 40px;
+}
+.button-block {
+    display: flex;
+}
+.mr-10 {
+    margin-right: 10px;
+}
+.ml-10 {
+    margin-left: 10px;
+}
+.mt-10 {
+    margin-top: 10px;
+}
+.mb-10 {
+    margin-bottom: 10px;
+}
+.mt-auto {
+    margin-top: auto;
+}
+.btn-red {
+    background-color: #ed655f
+}
