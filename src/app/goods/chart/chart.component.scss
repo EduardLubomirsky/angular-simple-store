@@ -1,0 +1,28 @@
+.chart-table {
+    width: 100%;
+    
+}
+.table-container {
+    border: 1px solid #28a745;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 10px 0px;
+}
+.chart-row,
+.chart-header-row {
+    td, th{
+        border: 1px solid #28a745;
+        padding: 10px;
+    }
+    th:first-child, td:first-child {
+        border-left: 0px;
+    }
+    th:last-child, td:last-child {
+        border-right: 0px;
+    }
+    &:last-child {
+        td {
+            border-bottom: 0px;
+        }
+    }
+}

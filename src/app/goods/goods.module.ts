@@ -7,13 +7,15 @@ import { GoodsComponent } from './goods.component';
 import { GoodsRoutingModule } from './goods.routing';
 import { GoodService } from './services/good.service';
 import { ImageService } from '../shared/services';
+import { ChartComponent } from './chart/chart.component';
 
 @NgModule({
   declarations: [
     AllGoodComponent,
     SingleGoodComponent,
     DetailGoodComponent,
-    GoodsComponent
+    GoodsComponent,
+    ChartComponent
   ],
   imports: [
     CommonModule,
