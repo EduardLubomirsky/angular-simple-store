@@ -4,15 +4,15 @@ import { ReactiveFormsModule }    from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 // used to create fake backend
-import { fakeBackendProvider } from './registration/helpers/fake-backend';
+import { fakeBackendProvider } from 'src/app/shared/helpers/fake-backend';
 
 import { AppComponent }  from './app.component';
 
 import { AlertComponent, FooterComponent, HeaderComponent, FullLayoutComponent } from 'src/app/shared/components';
-import { JwtInterceptor, ErrorInterceptor} from 'src/app/registration/helpers';
+import { JwtInterceptor, ErrorInterceptor} from 'src/app/shared/helpers';
 import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from 'src/app/login';
+import { RegisterComponent } from 'src/app/register';
 import { AppRoutingModule } from './app.routing';
 import { SharedModule } from './shared/modules/shared.module';
 

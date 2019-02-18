@@ -1,7 +1,8 @@
-export class Good {
+export class ChartGood {
     id: string;
     name: string;
     price: number;
-    category: number;
+    category: string;
     img: string | ArrayBuffer;
+    count: number;
 }

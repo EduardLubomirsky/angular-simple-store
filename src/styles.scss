@@ -19,20 +19,16 @@ body, html {
     background: #28a745;
     color: white;
     display: flex;
+    max-width: 150px;
 }
 
 input[type="text"], select {
-
-    &.ng-touched.ng-invalid {
-        border-color: #ed655f;
-    }
-
     box-sizing: border-box;
     width: 100%; 
     margin: 10px 0;
     border-radius: 5px;
     padding: 10px;
-    border: 1px solid #28a745;
+    border: 1px solid #343a40;
 }
 input[type="file"] {
     display: none;
@@ -62,4 +58,14 @@ select{
 }
 .btn-red {
     background-color: #ed655f
+}
+.error-input {
+    border-color: #ed655f !important;
+}
+.alert {
+    position: fixed;
+    right: 10px;
+    top: 10px;
+    width: 300px;
+    z-index: 1;
 }

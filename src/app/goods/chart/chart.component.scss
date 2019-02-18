@@ -3,7 +3,7 @@
     
 }
 .table-container {
-    border: 1px solid #28a745;
+    border: 1px solid #343a40;
     border-radius: 10px;
     overflow: hidden;
     margin: 10px 0px;
@@ -11,8 +11,12 @@
 .chart-row,
 .chart-header-row {
     td, th{
-        border: 1px solid #28a745;
+        border: 1px solid #343a40;
         padding: 10px;
+        img {
+            width: 50px;
+            height: 30px;
+        }
     }
     th:first-child, td:first-child {
         border-left: 0px;
@@ -25,4 +29,43 @@
             border-bottom: 0px;
         }
     }
+}
+
+.card {
+    position: relative;
+    width: 500px;
+    margin: 30px 0;
+    padding: 20px;
+    border: 1px solid #343a40;
+    border-radius: 10px;
+    &::before {
+        content: 'Card';
+        position: absolute;
+        top: -17px;
+        padding: 5px;
+        color: #343a40;
+        display: block;
+        background: #fff;
+    }
+    &>div {
+        position: relative;
+        &::before {
+            content: 'Number';
+            position: absolute;
+            top: -8px;
+            left: 10px;
+            padding: 5px;
+            color: #343a40;
+            display: block;
+            z-index: 1;
+            background: #fff;
+        }
+        &.card-cvc::before {
+            content: 'Cvc';
+        }
+        &.card-expiration::before {
+            content: 'Card expiration' !important;
+        }
+    }    
+
 }

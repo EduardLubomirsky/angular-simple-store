@@ -2,20 +2,12 @@
     <img src="../../../assets/img/preview.png" alt="" id="preview" class="preview">
     <label class="btn" for="file">Browse file</label>
     <input type="file" id="file" (change)="changeListener($event)">
-    <input type="text" placeholder="Name" [(ngModel)]="newProduct.name" required>
-
+    <input type="text" placeholder="Name" [ngClass]="{'error-input': !newProductValidation.name}" [(ngModel)]="newProduct.name" required>
+{{newProduct.category}}
     <select name="category" id="category" [(ngModel)]="newProduct.category">
-        <option value="1">category 1</option>
-        <option value="2">category 2</option>
-        <option value="3">category 3</option>
+        <option [attr.value]="i+1" *ngFor="let item of category; let i = index">{{item}}</option>
     </select>
-    <input type="text" placeholder="Price" [(ngModel)]="newProduct.price">
-    <div class="radio-group">
-        <label for="in-stock-false">yes</label>
-        <input id="in-stock-false" type="radio" name="in-stock" [value]="true" [(ngModel)]="newProduct.inStock">
-        <label for="in-stock-true">no</label>
-        <input id="in-stock-true" type="radio" name="in-stock" [value]="false" [(ngModel)]="newProduct.inStock">
-    </div>
+    <input type="text" placeholder="Price" [ngClass]="{'error-input': !newProductValidation.price}" [(ngModel)]="newProduct.price" required>
     <div class="button-block">
         <button class="btn mr-10" (click)="addNewProduct()">Add new product</button>
         <button class="btn btn-red" [routerLink]="['../../products/all']">Back to list</button>

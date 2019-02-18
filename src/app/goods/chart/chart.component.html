@@ -1,18 +1,43 @@
 <div class="table-container">
   <table class="chart-table">
     <tr class="chart-header-row">
-      <th>id</th>
-      <th>img</th>
-      <th>name</th>
-      <th>category</th>
-      <th>total price</th>
+      <th>Id</th>
+      <th>Preview</th>
+      <th>Name</th>
+      <th>Category</th>
+      <th>Count</th>
+      <th>Price</th>
+      <th>Delete</th>
+    </tr>
+    <tr class="chart-row" *ngFor="let good of allGoods">
+      <td>{{good.id}}</td>
+      <td><img [src]="good.img" alt=""></td>
+      <td>{{good.name}}</td>
+      <td>{{good.category}}</td>
+      <td>{{good.count}}</td>
+      <td>{{good.price}}</td>
+      <td>
+        <button class="btn btn-red" (click)="removeGood(good)">Remove</button>
+      </td>
     </tr>
     <tr class="chart-row">
-      <td>id</td>
-      <td>img</td>
-      <td>name</td>
-      <td>category</td>
-      <td>123</td>
+      <td colspan="5">Total price</td>
+      <td colspan="2">{{totalPrice}}</td>
     </tr>
   </table>
+</div>
+
+<div class="payment">
+  <div class="card">
+    <div class="card-number">
+      <input class="card-number" type="text" placeholder="5168001010234421" [ngClass]="{ 'error-input': !cardValidationModel.num }" [(ngModel)]="card.num">
+    </div>
+    <div class="card-cvc">
+      <input class="card-cvc" type="text" placeholder="325" [ngClass]="{ 'error-input': !cardValidationModel.cvc }" [(ngModel)]="card.cvc">
+    </div>
+    <div class="card-expiration">
+      <input class="card-expiration" type="text" placeholder="09/21" [ngClass]="{ 'error-input': !cardValidationModel.expiration }" [(ngModel)]="card.expiration">
+    </div>
+  </div>
+  <div class="btn" (click)="purchaseOrder()">Purchase order</div>
 </div>

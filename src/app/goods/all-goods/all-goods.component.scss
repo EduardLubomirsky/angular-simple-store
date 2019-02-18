@@ -1,11 +1,68 @@
 .filter-panel {
     display: flex;
-    border: 1px solid black;
-        border-radius: 10px;
-        margin: 20px;
+    position: relative;
+    border: 1px solid #343a40;
+    border-radius: 10px;
+    margin: 20px;
     .input-box {
         width: 50%;
         padding: 20px;
         margin: 10px;
     }
+
+    &:before {
+        content: 'Filtered panel';
+        position: absolute;
+        top: -17px;
+        left: 24px;
+        padding: 5px;
+        color: #343a40;
+        display: block;
+        background: #fff;
+    }
+    .search-bar, .category, .price-from, .price-to {
+        position: relative;
+        &:before {
+            content: '';
+            position: absolute;
+            top: -9px;
+            left: 13px;
+            padding: 5px;
+            color: #343a40;
+            display: block;
+            background: #fff;
+        }
+    }
+    .search-bar::before {
+        content: 'Search';
+    }
+    .category::before {
+        content: 'Category';
+    }
+    .price-from::before {
+        content: 'Price from';
+    }
+    .price-to::before {
+        content: 'Price to';
+    }
+}
+
+.item-counter {
+    padding-left: 20px;
+}
+
+.active-filter-panel {
+    display: flex;
+    position: relative;
+    border: 1px solid #343a40;
+    border-radius: 10px;
+    margin: 20px;
+    padding: 20px;
+    .search, .category, .price-from, .price-to {
+        display: flex;
+        align-items: center;
+    }
+}
+.btn.clear-all {
+    display: inline-block;
 }

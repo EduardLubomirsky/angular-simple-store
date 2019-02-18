@@ -5,9 +5,10 @@ import { SingleGoodComponent } from './single-good/single-good.component';
 import { DetailGoodComponent } from './detail-good/detail-good.component';
 import { GoodsComponent } from './goods.component';
 import { GoodsRoutingModule } from './goods.routing';
-import { GoodService } from './services/good.service';
-import { ImageService } from '../shared/services';
+import { GoodService, ImageService } from 'src/app/shared/services';
+
 import { ChartComponent } from './chart/chart.component';
+import { SharedModule } from '../shared/modules/shared.module';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { ChartComponent } from './chart/chart.component';
   ],
   imports: [
     CommonModule,
-    GoodsRoutingModule
+    GoodsRoutingModule,
+    SharedModule
   ],
   providers: [
     GoodService,

@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { AuthGuard } from './registration/guards/auth.guard';
+import { AuthGuard } from 'src/app/shared/guards/auth.guard';
 import { FullLayoutComponent } from './shared/components';
 
 const routes: Routes = [
