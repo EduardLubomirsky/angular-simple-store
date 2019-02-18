@@ -2,6 +2,6 @@ export class Good {
     id: string;
     name: string;
     price: number;
-    category: number;
+    category: string;
     img: string | ArrayBuffer;
 }

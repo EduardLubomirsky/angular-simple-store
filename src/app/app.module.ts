@@ -10,7 +10,6 @@ import { AppComponent }  from './app.component';
 
 import { AlertComponent, FooterComponent, HeaderComponent, FullLayoutComponent } from 'src/app/shared/components';
 import { JwtInterceptor, ErrorInterceptor} from 'src/app/shared/helpers';
-import { HomeComponent } from './home/home.component';
 import { LoginComponent } from 'src/app/login';
 import { RegisterComponent } from 'src/app/register';
 import { AppRoutingModule } from './app.routing';
@@ -27,7 +26,6 @@ import { SharedModule } from './shared/modules/shared.module';
     declarations: [
         AppComponent,
         AlertComponent,
-        HomeComponent,
         LoginComponent,
         RegisterComponent,
         FooterComponent,

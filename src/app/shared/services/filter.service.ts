@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Filter } from 'src/app/shared/models/filter';
-import { Good } from 'src/app/shared/models';
+import { Filter, Good } from 'src/app/shared/models';
 
 @Injectable({
     providedIn: 'root'
@@ -16,9 +15,9 @@ export class FilterService {
             );
         }
 
-        if (filterObject.category != 0 && filterObject.category) {
+        if (filterObject.category != '0' && filterObject.category) {
             filteredArray = filteredArray.filter(x => {
-                return filterObject.category == x.category;
+                return parseInt(filterObject.category) == parseInt(x.category);
             });
         }
 

@@ -9,17 +9,12 @@ body, html {
     margin: 0 auto;
     padding: 0 10px;
 }
-.item-wrapper {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-}
 .btn {
     border: none;
     background: #28a745;
     color: white;
     display: flex;
-    max-width: 150px;
+    max-width: auto;
 }
 
 input[type="text"], select {

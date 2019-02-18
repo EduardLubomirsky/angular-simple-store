@@ -35,6 +35,7 @@ export class SingleGoodComponent implements OnInit {
 
     this.alertService.subject.next();
     this.alertService.success("Item "+good.name+" was sacessfuly added to chart");
+    debugger;
     this.goodServices.addToChart(good); 
   }
 

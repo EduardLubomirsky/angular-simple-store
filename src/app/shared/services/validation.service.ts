@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Card, Good } from 'src/app/shared/models';
-import { CardValidation } from 'src/app/shared/models/card-validation';
+import { Card, Good, CardValidation, GoodValidation } from 'src/app/shared/models';
 import { isNumber } from 'util';
-import { GoodValidation } from 'src/app/shared/models/good-validation';
 
 @Injectable({
   providedIn: 'root'
@@ -32,7 +30,6 @@ export class ValidationService {
     }
     if(cardModel.expiration) {
       let separateDate = cardModel.expiration.split('/');
-      debugger;
       if(separateDate.length === 2) {
         if((parseInt(separateDate[0]) && Number(separateDate[0]) <= 12) &&
            (parseInt(separateDate[1]) && Number(separateDate[1]) <= 31)) {

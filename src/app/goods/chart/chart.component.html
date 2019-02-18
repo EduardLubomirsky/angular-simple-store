@@ -1,4 +1,4 @@
-<div class="table-container">
+<div class="table-container" *ngIf="allGoods.length">
   <table class="chart-table">
     <tr class="chart-header-row">
       <th>Id</th>
@@ -27,7 +27,7 @@
   </table>
 </div>
 
-<div class="payment">
+<div class="payment" *ngIf="allGoods.length">
   <div class="card">
     <div class="card-number">
       <input class="card-number" type="text" placeholder="5168001010234421" [ngClass]="{ 'error-input': !cardValidationModel.num }" [(ngModel)]="card.num">
@@ -39,5 +39,11 @@
       <input class="card-expiration" type="text" placeholder="09/21" [ngClass]="{ 'error-input': !cardValidationModel.expiration }" [(ngModel)]="card.expiration">
     </div>
   </div>
-  <div class="btn" (click)="purchaseOrder()">Purchase order</div>
+  <button class="btn" (click)="purchaseOrder()">Purchase order</button>
+</div>
+<div *ngIf="!allGoods.length" class="empty-chart">
+  <div class="chart-caption">
+    Chart is empty!
+  </div>
+  <button class="btn" [routerLink]="['../products/all']">Go to product page</button>
 </div>

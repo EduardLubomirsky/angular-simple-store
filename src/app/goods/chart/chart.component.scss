@@ -67,5 +67,17 @@
             content: 'Card expiration' !important;
         }
     }    
+}
 
+.empty-chart {
+    display: flex;
+    height: 70vh;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    .chart-caption {
+        font-size: 18px;
+        font-weight: bold;
+        margin: 20px;
+    }
 }

@@ -1,8 +1,7 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { GoodService, ValidationService, PaymentService, AlertService } from 'src/app/shared/services';
 import { StorageService } from 'src/app/shared/services';
-import { Good, ChartGood, Card } from 'src/app/shared/models';
-import { CardValidation } from 'src/app/shared/models/card-validation';
+import { Good, ChartGood, Card, CardValidation } from 'src/app/shared/models';
 
 @Component({
   selector: 'app-chart',
