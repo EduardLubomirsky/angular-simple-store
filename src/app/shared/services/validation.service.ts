@@ -31,8 +31,8 @@ export class ValidationService {
     if(cardModel.expiration) {
       let separateDate = cardModel.expiration.split('/');
       if(separateDate.length === 2) {
-        if((parseInt(separateDate[0]) && Number(separateDate[0]) <= 12) &&
-           (parseInt(separateDate[1]) && Number(separateDate[1]) <= 31)) {
+        if((Number(separateDate[0]) && Number(separateDate[0]) <= 12) &&
+           (Number(separateDate[1]) && Number(separateDate[1]) <= 31)) {
           validationModel.expiration = true;
         } else {
           validationModel.expiration = false;
@@ -59,7 +59,7 @@ export class ValidationService {
     }
 
     if('price' in goodModel && goodModel.price) {
-      if(parseFloat(goodModel.price.toString())) {
+      if(Number(goodModel.price)) {
         validationModel.price = true;
       } else {
         validationModel.price = false;
