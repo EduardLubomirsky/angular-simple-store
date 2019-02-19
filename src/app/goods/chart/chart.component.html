@@ -4,7 +4,6 @@
       <th>Id</th>
       <th>Preview</th>
       <th>Name</th>
-      <th>Category</th>
       <th>Count</th>
       <th>Price</th>
       <th>Delete</th>
@@ -13,7 +12,6 @@
       <td>{{good.id}}</td>
       <td><img [src]="good.img" alt=""></td>
       <td>{{good.name}}</td>
-      <td>{{good.category}}</td>
       <td>{{good.count}}</td>
       <td>{{good.price}}</td>
       <td>
@@ -21,7 +19,7 @@
       </td>
     </tr>
     <tr class="chart-row">
-      <td colspan="5">Total price</td>
+      <td colspan="4">Total price</td>
       <td colspan="2">{{totalPrice}}</td>
     </tr>
   </table>

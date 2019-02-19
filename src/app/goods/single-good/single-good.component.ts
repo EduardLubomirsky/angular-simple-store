@@ -22,20 +22,14 @@ export class SingleGoodComponent implements OnInit {
 
   public deleteGood(good: Good) {
     this.goodServices.allGoods = this.goodServices.removeGood('product', good);
+    this.alertService.subject.next();
+    this.alertService.success("Item "+good.name+" was sacessfuly deleted!"); 
     this.deleteAction.emit(true);
   }
 
-  public alertTimeout
   public addToChart(good: ChartGood) {
-    
-    // clearTimeout(this.alertTimeout);
-    // this.alertTimeout = setTimeout(()=>{
-    //   this.alertService.subject.next();
-    // },2000);
-
     this.alertService.subject.next();
     this.alertService.success("Item "+good.name+" was sacessfuly added to chart");
-    debugger;
     this.goodServices.addToChart(good); 
   }
 

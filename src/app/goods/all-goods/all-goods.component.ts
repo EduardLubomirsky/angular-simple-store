@@ -20,6 +20,9 @@ export class AllGoodComponent implements OnInit {
 
   ngOnInit() {
     this.allGoods = this.goodService.getAllGoods("product");
+    if(!this.allGoods) {
+      this.allGoods = [];
+    }
     this.filterObject.category = "0";
     this.choosenFilter.category = "0";
   }
@@ -59,6 +62,7 @@ export class AllGoodComponent implements OnInit {
   public clearAll() {
     this.filterObject = new Filter;
     this.applyFilter();
+    this.filterObject.category = "0";
     this.showClearAll = false
   }
 
