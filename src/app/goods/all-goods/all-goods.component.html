@@ -23,7 +23,7 @@
 <div class="active-filter-panel"  [hidden]="!showClearAll">
   <span class="search mr-10" [hidden]="!choosenFilter.name">
     <span>{{choosenFilter.name}}</span>
-    <span class="ml-10" (click)="removeName();">x</span>
+    <span class="ml-10 remove" (click)="removeName();">x</span>
   </span>
   <span class="category mr-10" [hidden]="!(choosenFilter.category && choosenFilter.category != '0')">
     <span>{{goodService.categoryGoods[choosenFilter.category]}}</span>
