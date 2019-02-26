@@ -7,17 +7,19 @@ import { AddGoodComponent } from './add-good/add-good.component';
 import { EditGoodComponent } from './edit-good/edit-good.component';
 import { UserComponent } from './user.component';
 import { SharedModule } from '../shared/modules/shared.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AddGoodComponent,
     EditGoodComponent,
-    UserComponent
+    UserComponent,
     ],
   imports: [
     CommonModule,
     UserRoutingModule,
-    SharedModule
+    SharedModule,
+    ReactiveFormsModule
   ]
 })
 export class UserModule { }
