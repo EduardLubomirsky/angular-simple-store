@@ -1,5 +1,25 @@
-<span>User ID -> {{userId}}</span>
+<div class="good-card">
+  <div class="img-preview">
+    <img class="item-image" [hidden]="!currentGood.img" [src]="currentGood.img" alt="">
+    <img class="item-image" [hidden]="currentGood.img" src="../../../assets/img/preview.png" alt="">
+  </div>
 
+  <h1>{{currentGood.name}}</h1>
+  <button (click)="setData()">Set Data To DB</button>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+<span>User ID -> {{goodId}}</span>
 <form [formGroup]="form" (ngSubmit)="onSubmit()" action="">
   <div class="form-group">
     <label for="email">Email</label>

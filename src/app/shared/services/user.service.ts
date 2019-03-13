@@ -17,7 +17,8 @@ export class UserService {
     }
 
     register(user: User) {
-        return this.http.post(`${environment.apiUrl}/users/register`, user);
+        debugger;
+        return this.http.post(`http://localhost:3000/users/register`, user);
     }
 
     update(user: User) {

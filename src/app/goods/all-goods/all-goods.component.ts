@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { GoodService, FilterService } from 'src/app/shared/services';
+import { GoodService, FilterService, StorageService } from 'src/app/shared/services';
 import { Filter, Good } from 'src/app/shared/models';
 
 @Component({
@@ -8,23 +8,28 @@ import { Filter, Good } from 'src/app/shared/models';
   styleUrls: ['./all-goods.component.scss']
 })
 export class AllGoodComponent implements OnInit {
-  public allGoods: Good[];
+  public allGoods: Good[] = [];
+  public goodForfilter: Good[] = [];
   public filterObject: Filter;
   public showClearAll: boolean = false;
   public choosenFilter: Filter;
 
-  constructor(private goodService: GoodService, private filterService: FilterService) {
+  constructor(private goodService: GoodService,
+    private filterService: FilterService,
+    private storageService: StorageService
+  ) {
     this.filterObject = new Filter;
     this.choosenFilter = new Filter();
   }
 
   ngOnInit() {
-    this.allGoods = this.goodService.getAllGoods("product");
-    if(!this.allGoods) {
-      this.allGoods = [];
-    }
+    this.storageService.getAllItems("products").subscribe((response: Response) => {
+      this.allGoods = <Good[]>JSON.parse(JSON.stringify(response));
+      this.goodForfilter = <Good[]>JSON.parse(JSON.stringify(this.allGoods));
+    });
     this.filterObject.category = "0";
     this.choosenFilter.category = "0";
+
   }
 
   public refreshView() {
@@ -32,11 +37,12 @@ export class AllGoodComponent implements OnInit {
   }
 
   public applyFilter() {
-    this.allGoods = this.goodService.getAllGoods("product");
-    this.allGoods = this.filterService.filterApply(this.filterObject, this.allGoods);
-    this.showClearAll = this.checkFilter();
-    let bufFilter: string = JSON.stringify(this.filterObject);
-    this.choosenFilter = JSON.parse(bufFilter);
+      this.allGoods = JSON.parse(JSON.stringify(this.goodForfilter));
+      this.allGoods = this.filterService.filterApply(this.filterObject, this.allGoods);
+      this.showClearAll = this.checkFilter();
+      let bufFilter: string = JSON.stringify(this.filterObject);
+      this.choosenFilter = JSON.parse(bufFilter);
+
   }
 
   public removePriceTo() {
@@ -67,7 +73,7 @@ export class AllGoodComponent implements OnInit {
   }
 
   public checkFilter() {
-    if(this.filterObject.name || this.filterObject.priceTo || this.filterObject.priceFrom || this.filterObject.category != "0") {
+    if (this.filterObject.name || this.filterObject.priceTo || this.filterObject.priceFrom || this.filterObject.category != "0") {
       return true;
     } else {
       return false;

@@ -1,24 +1,27 @@
 import { Injectable } from '@angular/core';
-
+import { HttpClient } from '@angular/common/http';
+import {map} from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
 export class StorageService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
-  public isKey(key: string): boolean { //TODO
-    let temp: string = localStorage.getItem(key);
-    return true;
+  public setItem<T>(key:string, item: T) {
+    return this.http.post('http://localhost:3000/' + key, item);
   }
 
-  public setItem<T>(key:string, item: T[]) {
-    localStorage.setItem(key, JSON.stringify(item));
+  public updateItem<T>(key:string, item: T) {
+    debugger;
+    return this.http.put('http://localhost:3000/' + key + '/'+ (item as any).id, item);
   }
 
-  public getAllItems<T>(key: string): T[]{
-    let goods: T[] = JSON.parse(localStorage.getItem(key));
-    return goods;
+  public getAllItems(key: string){
+    return this.http.get('http://localhost:3000/' + key);
   }
 
+  public deleteItem(key: string, id: number){
+    return this.http.delete('http://localhost:3000/' + key + '/' + id);
+  }
 }

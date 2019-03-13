@@ -1,7 +1,7 @@
 export class Good {
-    id: string;
+    id: number;
     name: string;
-    price: number;
+    price: string;
     category: string;
     img: string | ArrayBuffer;
 }

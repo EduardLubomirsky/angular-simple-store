@@ -40,7 +40,7 @@ export class AddGoodComponent implements OnInit {
     this.alertService.subject.next();
     
     if(this.validationService.goodValidation(this.newProduct, this.newProductValidation)){
-      this.goodService.addNewGood('product', this.newProduct);
+      this.goodService.addNewGood('products', this.newProduct);
       this.alertService.success("Item "+this.newProduct.name+" was sacessfuly added!");
       this.newProductValidation = new GoodValidation;
       this.newProduct = new Good;

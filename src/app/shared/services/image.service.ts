@@ -8,7 +8,7 @@ export class ImageService {
   constructor() { }
 
   public readThis(inputValue: HTMLInputElement): any {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) =>  {
       var reader = new FileReader();
       reader.readAsDataURL(inputValue.files[0]);
       reader.onload = function () {

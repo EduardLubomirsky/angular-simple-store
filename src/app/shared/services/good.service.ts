@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Good, ChartGood } from 'src/app/shared/models';
 import { StorageService } from 'src/app/shared/services/storage.service';
+import { HttpClient } from '@angular/common/http';
+import { AlertService } from './alert.service';
 
 @Injectable({
   providedIn: 'root'
@@ -8,108 +10,50 @@ import { StorageService } from 'src/app/shared/services/storage.service';
 export class GoodService {
 
   public allGoods: Good[];
-  public categoryGoods: string[] = ['All','Games','PC','Phone'];
+  public categoryGoods: string[] = ['All', 'Games', 'PC', 'Phone'];
 
-  constructor(private storageService: StorageService) { }
-
-  public getAllGoods<T>(key: string): T[] {
-    let goods: T[] = this.storageService.getAllItems<T>(key);
-    return goods;
-  }
+  constructor( private storageService: StorageService,
+               private http: HttpClient,
+               private alertService: AlertService) { }
 
   public addNewGood(key: string, good: Good) {
-    let all: Good[] = this.storageService.getAllItems<Good>(key);
+    this.storageService.setItem(key, good).subscribe((response: Response) => {
 
-    if (!all) {
-      all = [];
-    }
-
-    this.allGoods = all;
-
-    if (key !== 'chart') {
-      let id = this.generateId();
-      good.id = id;
-    }
-
-    this.allGoods.push(good);
-    this.storageService.setItem(key, this.allGoods);
-  }
-
-  public removeGood(key: string, good: Good): Good[] {
-    this.allGoods = this.getAllGoods(key);
-    this.allGoods = this.allGoods.filter(x => x.id != good.id);
-    this.storageService.setItem(key, this.allGoods);
-    return this.allGoods;
-  }
-
-  public addToChart(good: ChartGood) {
-    let goods: ChartGood[] = this.getAllGoods<ChartGood>('chart');
-
-    if (!goods) {
-      goods = [];
-    }
-
-    let index: number = -1;
-    try {
-      goods.forEach((x, i) => {
-
-        if (x.id == good.id) {
-          good = x;
-          index = i;
-          throw Error();
-        }
-
-      });
-    } catch (e) {
-
-    }
-
-    if (index != -1) {
-      let count = Number(good.count);
-      good.count = ++count;
-      goods.splice(goods.indexOf(good), 1, good);
-    } else {
-      good.count = 1;
-      goods.push(good);
-    }
-
-    this.storageService.setItem('chart', goods);
-  }
-
-  public sortById(goods: ChartGood[]): ChartGood[] {
-    return goods = goods.sort((x, y) => {
-      if (x.id < y.id) { return -1; }
-      if (x.id > y.id) { return 1; }
-      return 0;
     });
   }
 
-  public removeGoodFromChart(key: string, good: ChartGood) {
-    let goods: ChartGood[] = this.getAllGoods<ChartGood>(key);
-    let index: number = -1;
-    try {
-      goods.forEach((x, i) => {
-        if (x.id == good.id) {
-          if (good.count > 1) {
-            good.count--;
-            goods.splice(i, 1);
-            goods.push(good);
-            goods = this.sortById(goods);
-          } else {
-            goods.splice(i, 1);
-            goods = this.sortById(goods);
-          }
-          throw Error();
-        }
-      });
-    } catch (e) {
-
-    }
-    this.storageService.setItem(key, goods);
-    return goods;
+  public removeGood(key: string, id: number) {
+    return this.http.delete('http://localhost:3000/' + key + '/' + id);
   }
 
-  public generateId() {
-    return Math.random().toString(36).substr(2, 9);
+  public addToChart(good: ChartGood) {
+    this.storageService.getAllItems('chart').subscribe((response: ChartGood[]) => {
+      let goods:ChartGood[] = response;
+      let index: number = -1;
+      for(let i = 0; i < goods.length; i++) {
+        if (goods[i].id == good.id) {
+          good = goods[i];
+          index = i;
+          break;
+        }
+      }
+
+      if (index != -1) {
+        let count = Number(good.count);
+        good.count = ++count;
+        goods.splice(goods.indexOf(good), 1, good);
+        this.storageService.updateItem('chart', good).subscribe((response: Response) => {
+          this.alertService.subject.next();
+          this.alertService.success("Item " + good.name + " was sacessfuly added to chart (" + good.count + ")");
+        });
+      } else {
+        good.count = 1;
+        goods.push(good);
+        this.storageService.setItem('chart', good).subscribe((response: Response) => {
+          this.alertService.subject.next();
+          this.alertService.success("Item " + good.name + " was sacessfuly added to chart");
+        });
+      }
+    });
   }
 }

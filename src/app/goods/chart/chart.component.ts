@@ -1,7 +1,7 @@
-import { Component, OnInit, Output } from '@angular/core';
-import { GoodService, ValidationService, PaymentService, AlertService } from 'src/app/shared/services';
+import { Component, OnInit } from '@angular/core';
+import { ValidationService, PaymentService, AlertService } from 'src/app/shared/services';
 import { StorageService } from 'src/app/shared/services';
-import { Good, ChartGood, Card, CardValidation } from 'src/app/shared/models';
+import { ChartGood, Card, CardValidation } from 'src/app/shared/models';
 
 @Component({
   selector: 'app-chart',
@@ -9,24 +9,21 @@ import { Good, ChartGood, Card, CardValidation } from 'src/app/shared/models';
   styleUrls: ['./chart.component.scss']
 })
 export class ChartComponent implements OnInit {
-  public allGoods: ChartGood[];
+  public allGoods: ChartGood[] = [];
   public totalPrice: number;
   public card: Card;
   public cardValidationModel: CardValidation;
 
   constructor(private storageService: StorageService, 
-              private goodService: GoodService,
               private validationService: ValidationService,
               private paymentService: PaymentService, 
               private alertService: AlertService) {
     this.card = new Card;
     this.cardValidationModel = new CardValidation;
-    this.allGoods = this.storageService.getAllItems<ChartGood>('chart');
-    if (!this.allGoods) {
-      this.allGoods = [];
-    }
-    this.allGoods = this.goodService.sortById(this.allGoods);
-    this.totalPrice = this.getTotalPrice();
+    this.storageService.getAllItems('chart').subscribe((response: ChartGood[]) => {
+      this.allGoods = response;  
+      this.totalPrice = this.getTotalPrice();
+    });
   }
 
   public getTotalPrice(): number {
@@ -41,7 +38,14 @@ export class ChartComponent implements OnInit {
   }
 
   public removeGood(good: ChartGood) {
-    this.allGoods = this.goodService.removeGoodFromChart('chart', good);
+    good.count--;
+    if(good.count > 0) {
+      this.storageService.updateItem('chart', good).subscribe(response => {});
+    } else {
+      let indexToDelete = this.allGoods.indexOf(good);
+      this.allGoods.splice(indexToDelete, 1);
+      this.storageService.deleteItem('chart', Number(good.id)).subscribe(response => {});
+    }
     this.totalPrice = this.getTotalPrice();
   }
 
@@ -49,7 +53,9 @@ export class ChartComponent implements OnInit {
     if(this.validationService.cardValidation(this.card, this.cardValidationModel)) {
       if(this.paymentService.purchaseOrder(this.card, this.totalPrice)) {
         this.allGoods = [];
-        this.storageService.setItem('chart', this.allGoods);
+        this.storageService.setItem('chart', this.allGoods).subscribe((response: Response) => {
+          
+        });
         this.card = new Card;
         this.cardValidationModel = new CardValidation;
       }  
