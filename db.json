@@ -6,9 +6,85 @@
     "lastName": "ed",
     "token": "fake-jwt-token"
   },
-  "users": {
-    
-  },
+  "users": [
+    {
+      "firstName": "test",
+      "lastName": "test",
+      "username": "test",
+      "password": "123123",
+      "id": 1
+    },
+    {
+      "firstName": "test2",
+      "lastName": "test2",
+      "username": "test2",
+      "password": "123123",
+      "id": 2
+    },
+    {
+      "firstName": "ed",
+      "lastName": "ed",
+      "username": "ed",
+      "password": "123123",
+      "id": 3
+    },
+    {
+      "firstName": "tesss",
+      "lastName": "tesss",
+      "username": "tesss",
+      "password": "123123",
+      "id": 4
+    },
+    {
+      "firstName": "test5",
+      "lastName": "test5",
+      "username": "test5",
+      "password": "123123",
+      "id": 5
+    },
+    {
+      "firstName": "123",
+      "lastName": "123",
+      "username": "123",
+      "password": "123123",
+      "id": 6
+    },
+    {
+      "firstName": "tt",
+      "lastName": "tt",
+      "username": "tt",
+      "password": "tttttt",
+      "id": 7
+    },
+    {
+      "firstName": "111",
+      "lastName": "111",
+      "username": "111",
+      "password": "111111",
+      "id": 8
+    },
+    {
+      "firstName": "ff",
+      "lastName": "ff",
+      "username": "ff",
+      "password": "ffffff",
+      "id": 9
+    },
+    {
+      "firstName": "123",
+      "lastName": "123",
+      "username": "1234",
+      "password": "123123",
+      "id": 10
+    },
+    {
+      "firstName": "ega",
+      "lastName": "ega",
+      "username": "ega",
+      "password": "123123",
+      "id": 11
+    }
+  ],
   "chart": [
     {
       "category": "1",
